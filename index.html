@@ -141,6 +141,147 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spring02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/03/Spring02/">Spring02</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/03/Spring02/" class="archive-article-date">
+  	<time datetime="2019-08-03T06:54:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="02-动态代理的两种实现方式和AOP"><a href="#02-动态代理的两种实现方式和AOP" class="headerlink" title="02:动态代理的两种实现方式和AOP"></a>02:动态代理的两种实现方式和AOP</h1><h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>讲AOP之前，有必要和大家提一下<strong>动态代理</strong></p>
+<p>动态代理，在不修改源码的基础上对方法进行增强。</p>
+<p>动态代理分为两类，第一种是基于接口的动态代理，第二种是基于子类的动态代理。</p>
+<ol>
+<li><p>基于接口的动态代理</p>
+<ol>
+<li>涉及的类：Proxy，来源于JDK官方，意思就是不用引jar包。</li>
+<li>如何创建动态代理对象：<br>使用newProxyInstance()方法</li>
+<li>创建代理对象的要求：被代理类最少实现一个接口，如果没有则不能使用。</li>
+<li>newProxyInstance方法的参数<ol>
+<li>ClassLoader:你<strong>代理谁就写谁的</strong>getClass().getClassLoader()</li>
+<li>Class[] 数组:他是用于让代理对象拥有被代理对象相同的方法(实现同一个接口的方法)getClass().getInterfaces()</li>
+<li>InvocationHandler:如何代理。通常写成匿名内部类<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class MyTest &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    final Producer producer = new Producer();</span><br><span class="line">    IProducer iProducer = (IProducer) Proxy.newProxyInstance(producer.getClass().getClassLoader(),</span><br><span class="line">                           producer.getClass().getInterfaces(),</span><br><span class="line">                           new InvocationHandler() &#123;</span><br><span class="line">                                /*执行被代理对象的任何接口方法都会经过该方法</span><br><span class="line">                                * proxy代理对象的引用，一般用不着</span><br><span class="line">                                * method当前执行的方法</span><br><span class="line">                                * args当前执行方法的参数</span><br><span class="line">                                * 这个方法的返回值 和被代理对象方法相同的返回值</span><br><span class="line">                                * */</span><br><span class="line">                                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">                                    //提供增强的方法 这里用输出语句代替</span><br><span class="line">                                    System.out.println(&quot;购买原材料&quot;);</span><br><span class="line">                                    //如果只写这一行那不相当于啥事都没干嘛？</span><br><span class="line">                                    return method.invoke(producer, args);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;);</span><br><span class="line">        iProducer.addPC();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+<p><em>注：上述类中Producer实现了IProducer接口，重写了add方法</em></p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li><p>基于子类实现动态代理</p>
+<ol>
+<li>涉及的类：Enhancer，来源第三方cglib库。</li>
+<li>如何创建动态代理对象：<br>使用Enhancer中的create()方法</li>
+<li>创建代理对象的要求：被代理类不能是一个最终类。</li>
+<li>create方法的参数<ol>
+<li>Class:被代理对象的字节码</li>
+<li>callback:用于提供增强的代码他是让我们写如何代理的，一般写该接口的实现:MethodInterceptor(<em>方法拦截的意思</em>)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class MyTest &#123;</span><br><span class="line">public static void main(final String[] args) &#123;</span><br><span class="line"></span><br><span class="line">    final Producer producer = new Producer();</span><br><span class="line">    Producer cgProducer = (Producer) Enhancer.create(producer.getClass(), new MethodInterceptor() &#123;</span><br><span class="line">        public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable &#123;</span><br><span class="line">            //前面三个参数和基于接口的invoke参数是一样的，第四个是当前执行方法的代理对象  个包裹用不上了</span><br><span class="line">            //用输出语句代替业务</span><br><span class="line">            System.out.println(&quot;工作努力&quot;);</span><br><span class="line"></span><br><span class="line">            return method.invoke(producer, args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    cgProducer.addMoney();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<p> <em>注:此Producer类只默认继承了Object</em></p>
+</li>
+</ol>
+<hr>
+<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><ol>
+<li>什么是AOP？Aspect Oriented Programming即面向切面编程。</li>
+<li>AOP优势，不修改源码对已有方法进行增强，显而易见它的原理就是动态代理技术。<br>先来了解几个名词</li>
+<li>切入点Pointcut:要被增加的方法。</li>
+<li>通知Advice:就是我们到底要对切入点增加什么。<br>通知的类型有前置通知，后置通知，最终通知，异常通知，环绕通知。以method.invoke为临界进行划分，环绕通知中有明确的切入点方法调用</li>
+<li>织入，是指把增强应用到目标对象创建动态代理对象的过程</li>
+<li>切面Aspect，切入点和通知的结合</li>
+</ol>
+<hr>
+<h3 id="Spring中的AOP"><a href="#Spring中的AOP" class="headerlink" title="Spring中的AOP"></a>Spring中的AOP</h3><h4 id="配置形式的AOP"><a href="#配置形式的AOP" class="headerlink" title="配置形式的AOP"></a>配置形式的AOP</h4><p>pom中引入新依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.8.13&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>相关类的创建</p>
+<p>Service层的实现类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package com.rw.service.impl;</span><br><span class="line"></span><br><span class="line">import com.rw.service.StudentService;</span><br><span class="line">import org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line">@Service</span><br><span class="line">public class StudentServiceImpl implements StudentService &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 无返回值无参</span><br><span class="line">     */</span><br><span class="line">    public void saveStudent() &#123;</span><br><span class="line">        System.out.println(&quot;执行了保存学生&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 无返回值有参</span><br><span class="line">     */</span><br><span class="line">    public void updateStudent(int i) &#123;</span><br><span class="line">        System.out.println(&quot;执行了更新学生&quot;+i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 有返回值无参</span><br><span class="line">     */</span><br><span class="line">    public int deleteStudent() &#123;</span><br><span class="line">        System.out.println(&quot;执行了删除学生&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通知类的创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package com.rw.util;</span><br><span class="line"></span><br><span class="line">public class MyLogger &#123;</span><br><span class="line"></span><br><span class="line">    public void beforeprintLog()&#123;</span><br><span class="line">        System.out.println(&quot;前置通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public void afterprintLog(Object obj)&#123;</span><br><span class="line">        System.out.println(&quot;后置通知&quot;);</span><br><span class="line">        System.out.println(&quot;能够拿到切入点方法的返回值&quot;+obj);</span><br><span class="line">    &#125;</span><br><span class="line">    public void finalprintLog()&#123;</span><br><span class="line">        System.out.println(&quot;最终通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public void throwprintLog()&#123;</span><br><span class="line">        System.out.println(&quot;异常通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置文件的编写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;bean id=&quot;studentService&quot; class=&quot;com.rw.service.impl.StudentServiceImpl&quot;&gt;&lt;/bean&gt;</span><br><span class="line">&lt;bean id=&quot;myLogger&quot; class=&quot;com.rw.util.MyLogger&quot;&gt;&lt;/bean&gt;</span><br><span class="line">&lt;!--配置aop--&gt;</span><br><span class="line">&lt;aop:config proxy-target-class=&quot;true&quot;&gt;</span><br><span class="line">    &lt;!--id切面的唯一标识 ref指定通知类--&gt;</span><br><span class="line">    &lt;aop:aspect ref=&quot;myLogger&quot;&gt;</span><br><span class="line">        &lt;!--配置通知的类型 指定切入点--&gt;</span><br><span class="line">        &lt;aop:before method=&quot;beforeprintLog&quot; pointcut-ref=&quot;pointcut&quot;&gt;&lt;/aop:before&gt;</span><br><span class="line">        &lt;aop:after-returning method=&quot;afterprintLog&quot; pointcut-ref=&quot;pointcut&quot; returning=&quot;obj&quot;&gt;&lt;/aop:after-returning&gt;</span><br><span class="line">        &lt;aop:after method=&quot;finalprintLog&quot; pointcut-ref=&quot;pointcut&quot;&gt;&lt;/aop:after&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--配置切入点--&gt;</span><br><span class="line">        &lt;!--execution写法  访问修饰符 返回值 方法的全路径名(参数列表的类型) 下面的写法是通法--&gt;</span><br><span class="line">        &lt;aop:pointcut id=&quot;pointcut&quot; expression=&quot;execution(* com.rw.service.impl.StudentServiceImpl.saveStudent(..) )&quot;/&gt;</span><br><span class="line">    &lt;/aop:aspect&gt;</span><br><span class="line"></span><br><span class="line">&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package com.rw.test;</span><br><span class="line"></span><br><span class="line">import com.rw.service.impl.StudentServiceImpl;</span><br><span class="line">import org.springframework.context.ApplicationContext;</span><br><span class="line">import org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line">public class MyTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line">        StudentServiceImpl studentServiceImpl = (StudentServiceImpl)applicationContext.getBean(&quot;studentService&quot;);</span><br><span class="line">        studentServiceImpl.saveStudent();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试类输出的结果,因为在此切入点没用返回值所以输出的是null</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">前置通知</span><br><span class="line">执行了保存学生</span><br><span class="line">后置通知</span><br><span class="line">能够拿到切入点方法的返回值null</span><br><span class="line">最终通知</span><br><span class="line">执行了删除学生</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>环绕通知的配置 </p>
+<p>当我们配置了环绕通知，在通知类中环绕通知的方法要有这样<strong>一个参数ProceedingJoinPoint pjp</strong><br>然后在方法体内用pjp.proceed明确的指出调用方法然后我们才能在此方法体内加前置通知后置通知异常通知最终通知</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//环绕通知</span><br><span class="line">public Object aroundprintlog(ProceedingJoinPoint pjp)&#123;</span><br><span class="line">    Object object = null;</span><br><span class="line">    try &#123;</span><br><span class="line">        System.out.println(&quot;&quot;);</span><br><span class="line">        Object[] args = pjp.getArgs();//得到方法执行所需的参数</span><br><span class="line">        object =  pjp.proceed();//得到方法的返回值</span><br><span class="line"></span><br><span class="line">    &#125;catch (Throwable throwable)&#123;</span><br><span class="line">        System.out.println(&quot;异常通知&quot;);</span><br><span class="line">    &#125;finally &#123;</span><br><span class="line">        System.out.println(&quot;最终通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return  object;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注解形式的AOP"><a href="#注解形式的AOP" class="headerlink" title="注解形式的AOP"></a>注解形式的AOP</h4><p>这个方式非常便利</p>
+<ol>
+<li><p>首先在通知类中加上相应的注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line">import org.aspectj.lang.annotation.*;</span><br><span class="line"></span><br><span class="line">@Aspect</span><br><span class="line">public class MyLogger &#123;</span><br><span class="line">    @Before(value = &quot;execution(* com.rw.service.impl.StudentServiceImpl.saveStudent(..) )&quot;)</span><br><span class="line">    public void beforeprintLog()&#123;</span><br><span class="line">        System.out.println(&quot;前置通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @AfterReturning(value = &quot;execution(* com.rw.service.impl.StudentServiceImpl.saveStudent(..) )&quot;)</span><br><span class="line">    public void afterprintLog(Object obj)&#123;</span><br><span class="line">        System.out.println(&quot;后置通知&quot;);</span><br><span class="line">        System.out.println(&quot;能够拿到切入点方法的返回值&quot;+obj);</span><br><span class="line">    &#125;</span><br><span class="line">    @AfterThrowing(value = &quot;execution(* com.rw.service.impl.StudentServiceImpl.saveStudent(..) )&quot;)</span><br><span class="line">    public void finalprintLog()&#123;</span><br><span class="line">        System.out.println(&quot;最终通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @After(value = &quot;execution(* com.rw.service.impl.StudentServiceImpl.saveStudent(..) )&quot;)</span><br><span class="line">    public void throwprintLog()&#123;</span><br><span class="line">        System.out.println(&quot;异常通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //环绕通知</span><br><span class="line">    @Around(value = &quot;execution(* com.rw.service.impl.StudentServiceImpl.saveStudent(..) )&quot;)</span><br><span class="line">    public Object aroundprintlog(ProceedingJoinPoint pjp)&#123;</span><br><span class="line">        Object object = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            System.out.println(&quot;&quot;);</span><br><span class="line">            Object[] args = pjp.getArgs();//得到方法执行所需的参数</span><br><span class="line">            object =  pjp.proceed();//得到方法的返回值</span><br><span class="line"></span><br><span class="line">        &#125;catch (Throwable throwable)&#123;</span><br><span class="line">            System.out.println(&quot;异常通知&quot;);</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            System.out.println(&quot;最终通知&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return  object;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>只需在配置文件中加上<code>&lt;aop:aspectj-autoproxy/&gt;</code>这么一行就行了，其他的全给省略了<br>如果出现<br>就加这个属性<code>&lt;aop:aspectj-autoproxy proxy-target-class=&quot;true&quot;/&gt;</code></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/03/Spring02/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
