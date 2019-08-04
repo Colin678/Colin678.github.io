@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Oyzbb</title>
+  <title>Spring04 | Oyzbb</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Oyzbb">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="基于注解形式的Spring事务 配置事务管理器 开启Spring对注解事务的支持">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring04">
+<meta property="og:url" content="http://yoursite.com/2019/08/04/Spring04/index.html">
 <meta property="og:site_name" content="Oyzbb">
-<meta property="og:description" content="blog">
+<meta property="og:description" content="基于注解形式的Spring事务 配置事务管理器 开启Spring对注解事务的支持">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-04T11:49:13.139Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oyzbb">
-<meta name="twitter:description" content="blog">
+<meta name="twitter:title" content="Spring04">
+<meta name="twitter:description" content="基于注解形式的Spring事务 配置事务管理器 开启Spring对注解事务的支持">
   
     <link rel="alternative" href="/atom.xml" title="Oyzbb" type="application/atom+xml">
   
@@ -139,16 +140,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Spring04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Spring04" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/Spring04/">Spring04</a>
+    <h1 class="article-title" itemprop="name">
+      Spring04
     </h1>
   
 
@@ -163,10 +162,42 @@
       
         <h1 id="基于注解形式的Spring事务"><a href="#基于注解形式的Spring事务" class="headerlink" title="基于注解形式的Spring事务"></a>基于注解形式的Spring事务</h1><ol>
 <li>配置事务管理器</li>
-<li>开启Spring对注解事务的支持
-        
+<li>开启Spring对注解事务的支持<a id="more"></a></li>
+<li>在需要使用事务支持的地方使用@Transaction注解</li>
+</ol>
+<hr>
+<h2 id="改造applicationContext-xml"><a href="#改造applicationContext-xml" class="headerlink" title="改造applicationContext.xml"></a>改造applicationContext.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--1配置事务管理器--&gt;</span><br><span class="line">&lt;bean id=&quot;dataSourceTransactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;dataSource&quot; ref=&quot;datasource&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--开启spring对注解事务的支持--&gt;</span><br><span class="line">&lt;tx:annotation-driven transaction-manager=&quot;dataSourceTransactionManager&quot;&gt;&lt;/tx:annotation-driven&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="改造Service层"><a href="#改造Service层" class="headerlink" title="改造Service层"></a>改造Service层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">@Transactional</span><br><span class="line">public class StudentServiceImpl implements StudentSevice &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private StudentDao studentDao;</span><br><span class="line">    public Student findStudentById(String id) &#123;</span><br><span class="line">        return studentDao.selectStudentById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void transState(String sourceId, String targetId) &#123;</span><br><span class="line">        //根据sourceId查转出的id</span><br><span class="line">        Student sourceSrudent = studentDao.selectStudentById(sourceId);</span><br><span class="line">        //根据targetId查转入的id</span><br><span class="line">        Student targetSrudent = studentDao.selectStudentById(targetId);</span><br><span class="line">        //sourceSrudent的state置为0</span><br><span class="line">        sourceSrudent.setState(0);</span><br><span class="line">        //targetSrudent的state置为1</span><br><span class="line">        targetSrudent.setState(1);</span><br><span class="line">        //更新sourceSrudent的state</span><br><span class="line">        studentDao.updateStudent(sourceSrudent);</span><br><span class="line">        //更新targetSrudent的state</span><br><span class="line">        studentDao.updateStudent(targetSrudent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>是不是很简便只需在类上<strong>加上@Transactional</strong>就行了那么新的问题又来了，我们的属性又写哪呢？若一个方法为只读我们可以在方法上加注解@Transactional(readonly=true)就行了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Transactional(readOnly = true)</span><br><span class="line">    public Student findStudentById(String id) &#123;</span><br><span class="line">        return studentDao.selectStudentById(id);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置文件和注解两种形式各有利弊</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -175,16 +206,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/04/Spring04/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/04/Spring04/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/04/Spring03/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring03</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -204,262 +294,14 @@
 
 
 
-
   
-    <article id="post-Spring03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/Spring03/">Spring03</a>
-    </h1>
   
 
-        
-        <a href="/2019/08/04/Spring03/" class="archive-article-date">
-  	<time datetime="2019-08-04T05:18:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Spring的JdbcTemplate和事务管理"><a href="#Spring的JdbcTemplate和事务管理" class="headerlink" title="Spring的JdbcTemplate和事务管理"></a>Spring的JdbcTemplate和事务管理</h1><h2 id="JdbcTemplate"><a href="#JdbcTemplate" class="headerlink" title="JdbcTemplate"></a>JdbcTemplate</h2>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/04/Spring03/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/03/Spring02/">Spring02</a>
-    </h1>
   
 
-        
-        <a href="/2019/08/03/Spring02/" class="archive-article-date">
-  	<time datetime="2019-08-03T06:54:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="02-动态代理的两种实现方式和AOP"><a href="#02-动态代理的两种实现方式和AOP" class="headerlink" title="02:动态代理的两种实现方式和AOP"></a>02:动态代理的两种实现方式和AOP</h1><h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>讲AOP之前，有必要和大家提一下<strong>动态代理</strong></p>
-<p>动态代理，在不修改源码的基础上对方法进行增强。</p>
-<p>动态代理分为两类，第一种是基于接口的动态代理，第二种是基于子类的动态代理。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/03/Spring02/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/03/Spring01/">Spring01</a>
-    </h1>
   
 
-        
-        <a href="/2019/08/03/Spring01/" class="archive-article-date">
-  	<time datetime="2019-08-03T02:58:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="01-基于注解的IOC配置"><a href="#01-基于注解的IOC配置" class="headerlink" title="01:基于注解的IOC配置"></a>01:基于注解的IOC配置</h1><p>首先大家脑海里的有这样一个认知，<strong>注解配置和xml配置实现的功能都是一样的</strong>，都是降低程序之间的耦合只是配置形式不一样罢了。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/03/Spring01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring00" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/02/Spring00/">Spring00</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/02/Spring00/" class="archive-article-date">
-  	<time datetime="2019-08-02T07:43:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="00-前世和ioc的理解"><a href="#00-前世和ioc的理解" class="headerlink" title="00:前世和ioc的理解"></a>00:前世和ioc的理解</h1><h2 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h2><p>一开始我们是这样创建对象的：<br>我们想吃苹果我们就会new一个出来就像这样<br><code>Apple apple = new Apple();</code><br>那我现在又想吃香蕉了，西瓜了呢？要这样吗?</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/02/Spring00/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -482,8 +324,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
