@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Oyzbb</title>
+  <title>Mybatis01 | Oyzbb</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Oyzbb">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="简单分析MyBatis案例先来看一下流程图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis01">
+<meta property="og:url" content="http://yoursite.com/2019/08/06/Mybatis01/index.html">
 <meta property="og:site_name" content="Oyzbb">
-<meta property="og:description" content="blog">
+<meta property="og:description" content="简单分析MyBatis案例先来看一下流程图">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/08/06/Mybatis01/MyBatis01/view.png">
+<meta property="og:updated_time" content="2019-08-06T05:10:45.499Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oyzbb">
-<meta name="twitter:description" content="blog">
+<meta name="twitter:title" content="Mybatis01">
+<meta name="twitter:description" content="简单分析MyBatis案例先来看一下流程图">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/06/Mybatis01/MyBatis01/view.png">
   
     <link rel="alternative" href="/atom.xml" title="Oyzbb" type="application/atom+xml">
   
@@ -139,16 +142,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Mybatis01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Mybatis01" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/06/Mybatis01/">Mybatis01</a>
+    <h1 class="article-title" itemprop="name">
+      Mybatis01
     </h1>
   
 
@@ -162,77 +163,52 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="简单分析MyBatis案例"><a href="#简单分析MyBatis案例" class="headerlink" title="简单分析MyBatis案例"></a>简单分析MyBatis案例</h1><p>先来看一下流程图<br><img src="MyBatis01/view.png" alt="流程图"></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/06/Mybatis01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MyBatis00" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/05/MyBatis00/">MyBatis00</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/05/MyBatis00/" class="archive-article-date">
-  	<time datetime="2019-08-05T10:57:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Mybatis框架入门案例和注解案例"><a href="#Mybatis框架入门案例和注解案例" class="headerlink" title="Mybatis框架入门案例和注解案例"></a>Mybatis框架入门案例和注解案例</h1><p>MyBatis框架是持久层框架，也就是说是和数据库打交道的，也就是说对数据可以进行增删改查操作的</p>
+<a id="more"></a>
 <hr>
-<p>持久层底层技术解决方案</p>
-<ol>
-<li>JDBC技术:<ol>
-<li>Connection
-        
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//读取配置文件</span><br><span class="line">Reader reader = Resources.getResourceAsReader(&quot;config.xml&quot;);</span><br><span class="line">//创建sqlsessionFactory  同时还能指定那一个数据库</span><br><span class="line">SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader,&quot;mysql&quot;);</span><br><span class="line"> //使用工厂生产sqlsession对象</span><br><span class="line">SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line">//使用sqlsession创建dao接口的代理对象</span><br><span class="line">GirlMapper girlMapper = sqlSession.getMapper(GirlMapper.class);</span><br><span class="line">//使用代理对象执行方法</span><br><span class="line">List&lt;Girl&gt; list = girlMapper.findAllGirl();</span><br><span class="line">for (Girl girl: list) &#123;</span><br><span class="line">    System.out.println(list);</span><br><span class="line">&#125;</span><br><span class="line">//释放资源</span><br><span class="line">reader.close();</span><br><span class="line">sqlSession.close();</span><br></pre></td></tr></table></figure>
+
+<p>挨个类</p>
+<hr>
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><p>这是一个读取配置文件的，我们之前在做JDBC的时候，其中有一步就是把我们的数据库相关配置信息写到一个properties文件里面然后通过流的形式加载进来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   private static String driver;</span><br><span class="line">private static String url;</span><br><span class="line">private static String username;</span><br><span class="line">private static String pwd;</span><br><span class="line">static &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">		Properties p = new Properties();</span><br><span class="line">		p.load(DBUtil.class.getClassLoader()</span><br><span class="line">				.getResourceAsStream(&quot;com/rw/util/db.properties&quot;));</span><br><span class="line">		driver=p.getProperty(&quot;driver&quot;);</span><br><span class="line">		url=p.getProperty(&quot;url&quot;);</span><br><span class="line">		username=p.getProperty(&quot;username&quot;);</span><br><span class="line">		pwd=p.getProperty(&quot;pwd&quot;);</span><br><span class="line">		Class.forName(driver);</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打开源码我们发现Mybatis也是这么做的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static InputStream getResourceAsStream(ClassLoader loader, String resource) throws IOException &#123;</span><br><span class="line">    InputStream in = classLoaderWrapper.getResourceAsStream(resource, loader);</span><br><span class="line">    if (in == null) &#123;</span><br><span class="line">        throw new IOException(&quot;Could not find resource &quot; + resource);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return in;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="SqlSessionFactory"><a href="#SqlSessionFactory" class="headerlink" title="SqlSessionFactory"></a>SqlSessionFactory</h2><p>SqlSessionFactory是一个接口，它有一个SqlSessionFactoryBuilder的实现类，其中这个实现类的build方法可以返回一个SqlSessionFactory对象，那么我们就来看看这个build方法。</p>
+<h3 id="build"><a href="#build" class="headerlink" title="build"></a>build</h3><p>需要一个流，这个流就是我们利用Resources的getResourceAsReader(“config.xml”)所返回的，它通过这个流来构建一个SqlSessionFactory工厂，既然有，就一定设计到了解析xml，这个不是文章的重点，我们直接使用工具类，下面举一个解析的例子<br>首先是xml文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE person SYSTEM &quot;hello.dtd&quot;&gt;</span><br><span class="line">&lt;person&gt;</span><br><span class="line">	&lt;student type=&quot;lxschool&quot;&gt;</span><br><span class="line">		&lt;name&gt;李伟&lt;/name&gt;</span><br><span class="line">		&lt;sex&gt;女&lt;/sex&gt;</span><br><span class="line">		&lt;score&gt;99.99&lt;/score&gt;</span><br><span class="line">	&lt;/student&gt;</span><br><span class="line">	&lt;student type=&quot;rwschool&quot;&gt;</span><br><span class="line">		&lt;name&gt;李苇&lt;/name&gt;</span><br><span class="line">		&lt;sex&gt;男&lt;/sex&gt;</span><br><span class="line">		&lt;score&gt;0.01&lt;/score&gt;</span><br><span class="line">	&lt;/student&gt;</span><br><span class="line">&lt;/person&gt;</span><br></pre></td></tr></table></figure>
+
+<p>和自己写的dtd文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!ELEMENT person (student*)&gt;</span><br><span class="line">&lt;!ELEMENT student (name,sex,score)&gt;</span><br><span class="line">&lt;!ELEMENT name (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT sex (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT score (#PCDATA)&gt;</span><br><span class="line"></span><br><span class="line">&lt;!ATTLIST student </span><br><span class="line">	type CDATA #REQUIRED</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p>测试类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class Demo&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		File file = new File(&quot;F://eclipse//eclipse-workspace//Servlet_Listenner//WebContent//hello.xml&quot;);</span><br><span class="line">		SAXReader sax = new SAXReader();</span><br><span class="line">		try &#123;</span><br><span class="line">			Document doc = sax.read(file);</span><br><span class="line">			List&lt;Attribute&gt; list = doc.selectNodes(&quot;//person/student/@type&quot;);</span><br><span class="line">			for (Attribute attribute : list) &#123;</span><br><span class="line">				String string = attribute.getValue();</span><br><span class="line">				if(string.equals(&quot;rwschool&quot;)) &#123;</span><br><span class="line">					Iterator&lt;Element&gt; iterator = attribute.getParent().elementIterator();</span><br><span class="line">					while(iterator.hasNext()) &#123;</span><br><span class="line">						Element element=iterator.next();</span><br><span class="line">						String str = element.getText();</span><br><span class="line">                        System.out.println(str);</span><br><span class="line">					&#125;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (DocumentException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;   </span><br><span class="line">/*</span><br><span class="line">输注结果：李苇</span><br><span class="line">         男</span><br><span class="line">         0.01</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>给你磕头了<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -241,16 +217,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/05/MyBatis00/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/06/Mybatis01/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/05/MyBatis00/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MyBatis00</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -270,327 +305,14 @@
 
 
 
-
   
-    <article id="post-Spring04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/Spring04/">Spring04</a>
-    </h1>
   
 
-        
-        <a href="/2019/08/04/Spring04/" class="archive-article-date">
-  	<time datetime="2019-08-04T11:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="基于注解形式的Spring事务"><a href="#基于注解形式的Spring事务" class="headerlink" title="基于注解形式的Spring事务"></a>基于注解形式的Spring事务</h1><ol>
-<li>配置事务管理器</li>
-<li>开启Spring对注解事务的支持
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/04/Spring04/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/Spring03/">Spring03</a>
-    </h1>
   
 
-        
-        <a href="/2019/08/04/Spring03/" class="archive-article-date">
-  	<time datetime="2019-08-04T05:18:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Spring的JdbcTemplate和事务管理"><a href="#Spring的JdbcTemplate和事务管理" class="headerlink" title="Spring的JdbcTemplate和事务管理"></a>Spring的JdbcTemplate和事务管理</h1><h2 id="JdbcTemplate"><a href="#JdbcTemplate" class="headerlink" title="JdbcTemplate"></a>JdbcTemplate</h2>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/04/Spring03/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/03/Spring02/">Spring02</a>
-    </h1>
   
 
-        
-        <a href="/2019/08/03/Spring02/" class="archive-article-date">
-  	<time datetime="2019-08-03T06:54:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="02-动态代理的两种实现方式和AOP"><a href="#02-动态代理的两种实现方式和AOP" class="headerlink" title="02:动态代理的两种实现方式和AOP"></a>02:动态代理的两种实现方式和AOP</h1><h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>讲AOP之前，有必要和大家提一下<strong>动态代理</strong></p>
-<p>动态代理，在不修改源码的基础上对方法进行增强。</p>
-<p>动态代理分为两类，第一种是基于接口的动态代理，第二种是基于子类的动态代理。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/03/Spring02/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/03/Spring01/">Spring01</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/03/Spring01/" class="archive-article-date">
-  	<time datetime="2019-08-03T02:58:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="01-基于注解的IOC配置"><a href="#01-基于注解的IOC配置" class="headerlink" title="01:基于注解的IOC配置"></a>01:基于注解的IOC配置</h1><p>首先大家脑海里的有这样一个认知，<strong>注解配置和xml配置实现的功能都是一样的</strong>，都是降低程序之间的耦合只是配置形式不一样罢了。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/03/Spring01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring00" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/02/Spring00/">Spring00</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/02/Spring00/" class="archive-article-date">
-  	<time datetime="2019-08-02T07:43:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="00-前世和ioc的理解"><a href="#00-前世和ioc的理解" class="headerlink" title="00:前世和ioc的理解"></a>00:前世和ioc的理解</h1><h2 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h2><p>一开始我们是这样创建对象的：<br>我们想吃苹果我们就会new一个出来就像这样<br><code>Apple apple = new Apple();</code><br>那我现在又想吃香蕉了，西瓜了呢？要这样吗?</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/02/Spring00/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -613,8 +335,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
