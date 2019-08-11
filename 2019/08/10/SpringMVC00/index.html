@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Oyzbb</title>
+  <title>SpringMVC00 | Oyzbb</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Oyzbb">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="SpringMVC入门案例及执行流程springmvc框架是作用在表现层的，他就像是前端控制器。controller负责处理来自前端的请求，并做出一些响应，我们之前是在页面发出请求到servlet处理，servlet请求转发或重定向到响应的页面，或者异步刷新，响应到本页面，一个servlet类对应一次请求，而在引入springmvc后，他是一个松耦合的，可插拔的组件结构，总而言之，就是很灵活。下面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC00">
+<meta property="og:url" content="http://yoursite.com/2019/08/10/SpringMVC00/index.html">
 <meta property="og:site_name" content="Oyzbb">
-<meta property="og:description" content="blog">
+<meta property="og:description" content="SpringMVC入门案例及执行流程springmvc框架是作用在表现层的，他就像是前端控制器。controller负责处理来自前端的请求，并做出一些响应，我们之前是在页面发出请求到servlet处理，servlet请求转发或重定向到响应的页面，或者异步刷新，响应到本页面，一个servlet类对应一次请求，而在引入springmvc后，他是一个松耦合的，可插拔的组件结构，总而言之，就是很灵活。下面">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-11T01:37:22.307Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oyzbb">
-<meta name="twitter:description" content="blog">
+<meta name="twitter:title" content="SpringMVC00">
+<meta name="twitter:description" content="SpringMVC入门案例及执行流程springmvc框架是作用在表现层的，他就像是前端控制器。controller负责处理来自前端的请求，并做出一些响应，我们之前是在页面发出请求到servlet处理，servlet请求转发或重定向到响应的页面，或者异步刷新，响应到本页面，一个servlet类对应一次请求，而在引入springmvc后，他是一个松耦合的，可插拔的组件结构，总而言之，就是很灵活。下面">
   
     <link rel="alternative" href="/atom.xml" title="Oyzbb" type="application/atom+xml">
   
@@ -139,295 +140,205 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-SpringMVC00" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/11/SpringMVC01/" class="archive-article-date">
-  	<time datetime="2019-08-11T01:38:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/11/SpringMVC01/">SpringMVC01</a>
+    <h1 class="article-title" itemprop="name">
+      SpringMVC00
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/10/SpringMVC00/" class="archive-article-date">
+        
+        <a href="/2019/08/10/SpringMVC00/" class="archive-article-date">
   	<time datetime="2019-08-10T01:47:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/10/SpringMVC00/">SpringMVC00</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SpringMVC入门案例及执行流程"><a href="#SpringMVC入门案例及执行流程" class="headerlink" title="SpringMVC入门案例及执行流程"></a>SpringMVC入门案例及执行流程</h1><p>springmvc框架是作用在表现层的，他就像是前端控制器。controller负责处理来自前端的请求，并做出一些响应，我们之前是在页面发出请求到servlet处理，servlet请求转发或重定向到响应的页面，或者异步刷新，响应到本页面，一个servlet类对应一次请求，而在引入springmvc后，他是一个松耦合的，可插拔的组件结构，总而言之，就是很灵活。下面通过一个小案例来对springMVC有一个简单的了解。</p>
+<ol>
+<li><p>创建一个maven web项目</p>
+</li>
+<li><p>建立好java文件夹和resources文件夹</p>
+</li>
+<li><p>引依赖</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-web&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;2.5&lt;/version&gt;</span><br><span class="line">  &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;2.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在web.xml里配置前端控制器</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">   &lt;!--前端控制器,这个类是spring提供的类，url拦截所有的请求，最基本的搭环境,顺便加载mvc的配置环境--&gt;</span><br><span class="line"> &lt;servlet&gt;</span><br><span class="line"> &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt;</span><br><span class="line"> &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;</span><br><span class="line"> &lt;!--加载mvc的配置文件--&gt;</span><br><span class="line"> &lt;init-param&gt;</span><br><span class="line">   &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</span><br><span class="line">   &lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;</span><br><span class="line"> &lt;/init-param&gt;</span><br><span class="line"> &lt;!----&gt;</span><br><span class="line"> &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line"> &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt;</span><br><span class="line"> &lt;url-pattern&gt;/&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p> <strong>启动服务器，加载一些配置文件，<br> <param-value>classpath:springmvc.xml&lt;/这里加载springmvc.xml，<load-on-start>1</load-on-start>就是第一个启动的,也就是说这个类org.springframework.web.servlet.DispatcherServlet(框架写好的提供给你的类)它负责截获请求并将其分派给相应的处理器，<url-pattern>/</url-pattern>就是拦截你所有的请求</param-value></strong></p>
+</li>
+<li><p>前端代码</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    Hello World</span><br><span class="line">    &lt;a href=&quot;hello&quot;&gt;click&lt;/a&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
 
+<p> 可以看出，这个超链接是在请求hello这个controller，那么dispatcherServlet怎么来处理这controller映射呢?这里我们采用注解来配置映射</p>
+</li>
+<li><p>controller</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class HelloController &#123;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(path = &quot;/hello&quot;)</span><br><span class="line">    public String testController()&#123;</span><br><span class="line">        System.out.println(&quot;hello world&quot;);</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 这里看到一个@RequestMapping(path = “/hello”)这个path就对应这前端页面的a连接的hello请求了的处理器，返回的字符串”success”是什么意思呢？这就得拿出springmvc的配置文件了</p>
+</li>
+<li><p>配置文件的内容</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean  class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</span><br><span class="line">    &lt;!--前缀--&gt;</span><br><span class="line">    &lt;property name=&quot;prefix&quot; value=&quot;/view/&quot;/&gt;</span><br><span class="line">    &lt;!--后缀--&gt;</span><br><span class="line">    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p> InternalResourceViewResolver这是框架提供的视图解析器类，在这个配置文件中配置了视图解析的一个对象，dispatcherServlet会找视图解析器，他会帮你跳转到view目录下，的jsp，这点由prefix和suffix决定</p>
+</li>
+</ol>
+<hr>
+<p>梳理一下springmvc框架基于组件的执行流程<br><strong>客户端发出request请求</strong>，先到<strong>前端控制器DispatcherServlet</strong>，他会请求查找controller，向哪请求呢？，向<strong>处理器映射器HandlerMapping</strong>发出请求(通过你的请求路径和requestMapping的path进行映射)，查找完后向<strong>前端控制器DispatcherServlet</strong>返回一个执行链，那么返回之后是不是应该要进入具体的controller，这个时候<strong>前端控制器DispatcherServlet</strong>会向<strong>处理器适配器HandlerAdapter去执行Handler</strong>，然后就执行对应的controller再返回一个<strong>ModelAndView</strong>到<strong>前端控制器DispatcherServlet</strong>，此时<strong>前端控制器DispatcherServlet</strong>再请求视图解析，这一步有视图解析器<strong>ViewResolver完成</strong>，他会返回一个视图View给<strong>前端控制器DispatcherServlet</strong>，他在渲染视图成一个jsp，pdf等等，填充到request域中响应给客户端。</p>
+<hr>
+<ol>
+<li>前端控制器DispatherServlet：用户请求到达前端控制器，dispatherServlet是整个流程中心，由它调用其他组件处理用户的请求，显然前端控制器DispatcherServlet降低了组件之间的耦合性。</li>
+<li>处理器映射器HandlerMapping：负责根据用户的请求找到对应的handler即处理器，SpringMVC提供了不同的映射器实现不同的映射方式，有注解RequestMapping，配置文件，实现接口方式等。</li>
+<li>Handler处理器：就是开发中编写具体业务，由dispatherServlet把用户请求转发到hanler里去，handler来具体处理。</li>
+<li>处理器适配器HandlerAdapter：通过HandlerAdapter对处理器进行执行</li>
+<li>视图解析器ViewResolver：负责将处理结果生成view视图，ViewResolver首先根据逻辑视图名解析成物理视图名(即具体的页面地址)，再生成View试图对象，最后通过view进行渲染将处理结果响应给客户端</li>
+<li>视图View：SpringMVC框架提供了多种视图类型，有jstlView，freemarkerView，pdfView等，最常见的就是jsp</li>
+</ol>
+<p>再来看看配置文件，我们好像只配置了前端控制器和视图解析器，注意<code>&lt;mvc:annotation-driven/&gt;</code>，把它配上就相当于把其他的都配玩了</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>给你磕头了<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/10/SpringMVC00/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/09/MyBatis05/" class="archive-article-date">
-  	<time datetime="2019-08-09T01:16:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-09</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/08/11/SpringMVC01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SpringMVC01
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/09/MyBatis05/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MyBatis05</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/09/MyBatis05/">MyBatis05</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/08/MyBatis04/" class="archive-article-date">
-  	<time datetime="2019-08-08T00:55:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/08/MyBatis04/">MyBatis04</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/07/MyBatis03/" class="archive-article-date">
-  	<time datetime="2019-08-07T03:12:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/07/MyBatis03/">MyBatis03</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/06/MyBatis02/" class="archive-article-date">
-  	<time datetime="2019-08-06T10:58:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/06/MyBatis02/">MyBatis02</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/06/Mybatis01/" class="archive-article-date">
-  	<time datetime="2019-08-06T01:31:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/06/Mybatis01/">Mybatis01</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/05/MyBatis00/" class="archive-article-date">
-  	<time datetime="2019-08-05T10:57:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/05/MyBatis00/">MyBatis00</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/04/Spring04/" class="archive-article-date">
-  	<time datetime="2019-08-04T11:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/04/Spring04/">Spring04</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/04/Spring03/" class="archive-article-date">
-  	<time datetime="2019-08-04T05:18:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/04/Spring03/">Spring03</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -451,8 +362,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
