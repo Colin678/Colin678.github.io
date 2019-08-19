@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SpringMVC01 | Oyzbb</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="@RequestMapping注解的属性和请求参数绑定Request进入@RequestMapping这个注解  观察path和value发现这两就是一样的都是 再看method，类型是一个对象数组类型点进去一看是一个枚举类GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS,TRACE;这可以指定请求的方法，比如我前台是个超链接，而我的requestmapping的met">
+  <meta name="description" content="@RequestMapping注解的属性和请求参数绑定RequestMapping进入@RequestMapping这个注解  观察path和value发现这两就是一样的都是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringMVC01">
 <meta property="og:url" content="http://yoursite.com/2019/08/11/SpringMVC01/index.html">
 <meta property="og:site_name" content="Oyzbb">
-<meta property="og:description" content="@RequestMapping注解的属性和请求参数绑定Request进入@RequestMapping这个注解  观察path和value发现这两就是一样的都是 再看method，类型是一个对象数组类型点进去一看是一个枚举类GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS,TRACE;这可以指定请求的方法，比如我前台是个超链接，而我的requestmapping的met">
+<meta property="og:description" content="@RequestMapping注解的属性和请求参数绑定RequestMapping进入@RequestMapping这个注解  观察path和value发现这两就是一样的都是">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/08/11/SpringMVC01/requestmapping.PNG">
-<meta property="og:updated_time" content="2019-08-19T05:24:05.817Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/SpringMVC01/SpringMVC01/requestmapping.PNG">
+<meta property="og:updated_time" content="2019-08-19T07:46:36.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC01">
-<meta name="twitter:description" content="@RequestMapping注解的属性和请求参数绑定Request进入@RequestMapping这个注解  观察path和value发现这两就是一样的都是 再看method，类型是一个对象数组类型点进去一看是一个枚举类GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS,TRACE;这可以指定请求的方法，比如我前台是个超链接，而我的requestmapping的met">
-<meta name="twitter:image" content="http://yoursite.com/2019/08/11/SpringMVC01/requestmapping.PNG">
+<meta name="twitter:description" content="@RequestMapping注解的属性和请求参数绑定RequestMapping进入@RequestMapping这个注解  观察path和value发现这两就是一样的都是">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/11/SpringMVC01/SpringMVC01/requestmapping.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Oyzbb" type="application/atom+xml">
   
@@ -162,9 +162,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="RequestMapping注解的属性和请求参数绑定"><a href="#RequestMapping注解的属性和请求参数绑定" class="headerlink" title="@RequestMapping注解的属性和请求参数绑定"></a>@RequestMapping注解的属性和请求参数绑定</h1><h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><p>进入@RequestMapping这个注解<br><img src="requestmapping.PNG" alt="RequestMapping"></p>
+        <h1 id="RequestMapping注解的属性和请求参数绑定"><a href="#RequestMapping注解的属性和请求参数绑定" class="headerlink" title="@RequestMapping注解的属性和请求参数绑定"></a>@RequestMapping注解的属性和请求参数绑定</h1><h2 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="RequestMapping"></a>RequestMapping</h2><p>进入@RequestMapping这个注解<br><img src="SpringMVC01/requestmapping.PNG" alt="RequestMapping"></p>
 <ol>
-<li>观察path和value发现这两就是一样的都是</li>
+<li>观察path和value发现这两就是一样的都是<a id="more"></a></li>
 <li>再看method，类型是一个对象数组类型点进去一看是一个枚举类<code>GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS,TRACE;</code><strong>这可以指定请求的方法</strong>，比如我前台是个超链接，而我的requestmapping的method的值为RequestMethod.post那么就会出现405Menthod Not Allowed的错误页面</li>
 <li>再看params用于指定限定请求参数的条件<ol>
 <li>前台代码<code>&lt;a href=&quot;springmvc/hello?username=oyzbb&quot;&gt;click&lt;/a&gt;</code></li>
