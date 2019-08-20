@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Oyzbb">
 <meta property="og:description" content="@ModelAttribute,响应数据和结果视图@SessionAttribute注解@ModelAttribute前台代码 12345-------------------测试@ModelAttribute-------------------   &amp;lt;form action=&amp;quot;springmvc/testModelAttribute&amp;quot; method=&amp;quot;pos">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-19T23:58:49.576Z">
+<meta property="og:updated_time" content="2019-08-20T00:48:17.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC03">
 <meta name="twitter:description" content="@ModelAttribute,响应数据和结果视图@SessionAttribute注解@ModelAttribute前台代码 12345-------------------测试@ModelAttribute-------------------   &amp;lt;form action=&amp;quot;springmvc/testModelAttribute&amp;quot; method=&amp;quot;pos">
@@ -176,7 +176,38 @@
 <p>测试</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">先执行这个12</span><br><span class="line">12</span><br><span class="line">java.lang.Object@15eb706d</span><br></pre></td></tr></table></figure>
 
-<h2 id="SessionAttribute"><a href="#SessionAttribute" class="headerlink" title="@SessionAttribute"></a>@SessionAttribute</h2>
+<h2 id="视图结果"><a href="#视图结果" class="headerlink" title="视图结果"></a>视图结果</h2><ol>
+<li><p>controller返回的是字符串时可以指定逻辑视图名，通过视图解析器解析为物理视图地址，之前都是返回字符串success，通过视图解析器<em>InternalResourceViewResolver</em>跳转到view/success.jsp</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--视图解析器--&gt;</span><br><span class="line">&lt;bean  class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</span><br><span class="line">    &lt;!--前缀--&gt;</span><br><span class="line">    &lt;property name=&quot;prefix&quot; value=&quot;/view/&quot;/&gt;</span><br><span class="line">    &lt;!--后缀--&gt;</span><br><span class="line">    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 其中还能通过返回<strong>forward(redirect):/view/success.jsp</strong>来直接控制路由，这样写视图解析器并不会为你添加前缀或后缀</p>
+</li>
+<li><p>返回值是void的时候，可以通过原始的servlet API作为控制器中方法的参数</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testReturnVoid&quot;,method = RequestMethod.GET)</span><br><span class="line">public void testReturnVoid(HttpServletRequest request, HttpServletResponse response) throws Exception&#123;</span><br><span class="line">    //request.getRequestDispatcher(&quot;/view/success.jsp&quot;).forward(request, response);</span><br><span class="line">    response.sendRedirect(request.getContextPath()+&quot;/view/success.jsp&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 经测试，均成功。</p>
+</li>
+<li><p>返回值是ModelAndView<br> ModelAndView是Spring提供的一个对象，可以用来调整具体的jsp视图</p>
+<ol>
+<li><p>前台代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    -------------------测试testReturnMAV-------------------&lt;br&gt;</span><br><span class="line">&lt;a href=&quot;springmvc/testReturnMAV/10086&quot;&gt;测试返回值为ModelAndView&lt;/a&gt;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>控制器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    @RequestMapping(value = &quot;testReturnMAV/&#123;id&#125;&quot;,method = RequestMethod.GET)</span><br><span class="line">public ModelAndView testReturnMAV(@PathVariable(&quot;id&quot;) Integer id) &#123;</span><br><span class="line">    System.out.println(id);</span><br><span class="line">    ModelAndView modelAndView = new ModelAndView();</span><br><span class="line">    modelAndView.addObject(&quot;id&quot;,id);</span><br><span class="line">    modelAndView.setViewName(&quot;success&quot;);</span><br><span class="line">    return modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试响应</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">先执行这个null</span><br><span class="line">10086</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="SessionAttribute"><a href="#SessionAttribute" class="headerlink" title="@SessionAttribute"></a>@SessionAttribute</h2><p>接上个例子<br>在succes.jsp用el取值只能拿到${requestScope.id}拿不到${sessionScope.id}<br>因为没有把“id”存到session域中，只是放到了request中<br>只需在控制器类上加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//控制器类</span><br><span class="line">@Controller</span><br><span class="line">@RequestMapping(&quot;springmvc&quot;)</span><br><span class="line">@SessionAttributes(value = &#123;&quot;id&quot;&#125;)</span><br><span class="line">public class HelloController &#123;</span><br></pre></td></tr></table></figure>
+
+<p>经测试，能拿到了。</p>
+
       
 
       
