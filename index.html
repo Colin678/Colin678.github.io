@@ -163,77 +163,7 @@
       
         <h1 id="Git简易使用"><a href="#Git简易使用" class="headerlink" title="Git简易使用"></a>Git简易使用</h1><h2 id="使用前准备"><a href="#使用前准备" class="headerlink" title="使用前准备"></a>使用前准备</h2><p>安装完git后配置本地的用户名和邮箱右键git bash here</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Colin678&quot;</span><br><span class="line">git config --global user.email &quot;1020084984@qq.com&quot;</span><br></pre></td></tr></table></figure>
-
-<p>配完后查看<br>查看C:\Users\你电脑的用户.gitconfig 打开就能看到刚刚配置好的<br>github就是一个远程仓库统一的托管网站（<a href="https://github.com/）" target="_blank" rel="noopener">https://github.com/）</a></p>
-<p>用它的目的就是<strong>将本地的项目和托管网站的项目进行交互</strong>，注意我登陆这个网站时输入了用户名和密码，那我操作我项目和这个托管网站进行交互时是不是也要输入用户名和密码，很麻烦，就有<strong>免密钥登陆</strong><br>怎么配置？</p>
-<ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C 你的邮箱</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一直回车就完事了，在回车时会看到一个目录你去找他就会看到ssh密匙</p>
-</li>
-<li><p>然后在托管网站上配置shh就行了，把第二步的那个ssh密匙复制进去，名字随便取</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-
-<p> 测试</p>
-</li>
-<li><p>测试好了之后，在第二步的那个路径会多出一个<strong>known_hosts</strong>这个文件</p>
-</li>
-</ol>
-<hr>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
-<li><p>在电脑上新建一个项目，在项目根目录下输入</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在托管网站上也新建一个仓库</p>
-</li>
-<li><p>现在进行项目(自己电脑的和托管网站的)之间的关联</p>
-</li>
-<li><p>远程项目的唯一标识符就是 </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git@github.com:Colin678/wuziqi.git</span><br><span class="line">或者</span><br><span class="line">https://github.com/Colin678/wuziqi.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>本地项目和托管网站的仓库关联</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:Colin678/wuziqi.git(第一步的标识符任意一种)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第一次发布项目</p>
-<p> 本地到远程</p>
-<ol>
-<li>git add .( . 当前目录下的所有文件)<br>将他们放入缓存区(index)</li>
-<li>git commit -m ‘注释内容’</li>
-<li>git push -u origin master 推送出去</li>
-</ol>
-</li>
-<li><p>你发布了别人怎么下载</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:Colin678/wuziqi.git</span><br><span class="line">或者</span><br><span class="line">https://github.com/Colin678/wuziqi.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>长期的维护，也就是更新和提交</p>
-<p> 更新，远程更新到本地<br> 输入<code>git pull</code>就完事了</p>
-<p> 提交，在自己电脑上写好了提交到仓库</p>
-<ol>
-<li>git add .( . 当前目录下的所有文件)<br>将他们放入缓存区(index)</li>
-<li>git commit -m ‘注释内容’</li>
-<li>git push origin master 推送出去 也就少了个-u</li>
-</ol>
-</li>
-<li><p>创建一个分支</p>
-<p> git branch 分支的名称</p>
-</li>
-<li><p>切换分支</p>
-<p>git checkout 分支的名称</p>
-</li>
-<li><p>合并分支</p>
-<p>git merge 分支名称(看你想合并谁)</p>
-</li>
-<li><p>解决冲突</p>
-<p>当两个分支在操作同一文件时，合并会有冲突，</p>
-<ol>
-<li>第一部，编辑此文件</li>
-<li>两个分支商讨后保存退出</li>
-<li>add commit</li>
-</ol>
-</li>
-</ol>
-
+        
       
 
       
