@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>git | Oyzbb</title>
+  <title>sparsearray | Oyzbb</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Git简易使用使用前准备安装完git后配置本地的用户名和邮箱右键git bash here 12git config --global user.name &amp;quot;Colin678&amp;quot;git config --global user.email &amp;quot;1020084984@qq.com&amp;quot;">
+  <meta name="description" content="稀疏数组基本介绍当一个数组大部分元素为0或者为同一值时，可以使用稀疏数组来保存该数组 稀疏数组的处理方法  记录数组一共有几行几列，有多少个不同的值 把具有不同的值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git">
-<meta property="og:url" content="http://yoursite.com/2019/09/17/git/index.html">
+<meta property="og:title" content="sparsearray">
+<meta property="og:url" content="http://yoursite.com/2019/09/20/sparsearray/index.html">
 <meta property="og:site_name" content="Oyzbb">
-<meta property="og:description" content="Git简易使用使用前准备安装完git后配置本地的用户名和邮箱右键git bash here 12git config --global user.name &amp;quot;Colin678&amp;quot;git config --global user.email &amp;quot;1020084984@qq.com&amp;quot;">
+<meta property="og:description" content="稀疏数组基本介绍当一个数组大部分元素为0或者为同一值时，可以使用稀疏数组来保存该数组 稀疏数组的处理方法  记录数组一共有几行几列，有多少个不同的值 把具有不同的值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-18T01:45:31.256Z">
+<meta property="og:updated_time" content="2019-09-20T03:22:21.336Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git">
-<meta name="twitter:description" content="Git简易使用使用前准备安装完git后配置本地的用户名和邮箱右键git bash here 12git config --global user.name &amp;quot;Colin678&amp;quot;git config --global user.email &amp;quot;1020084984@qq.com&amp;quot;">
+<meta name="twitter:title" content="sparsearray">
+<meta name="twitter:description" content="稀疏数组基本介绍当一个数组大部分元素为0或者为同一值时，可以使用稀疏数组来保存该数组 稀疏数组的处理方法  记录数组一共有几行几列，有多少个不同的值 把具有不同的值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模">
   
     <link rel="alternative" href="/atom.xml" title="Oyzbb" type="application/atom+xml">
   
@@ -140,99 +140,164 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-git" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-sparsearray" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      git
+      sparsearray
     </h1>
   
 
         
-        <a href="/2019/09/17/git/" class="archive-article-date">
-  	<time datetime="2019-09-17T07:13:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
+        <a href="/2019/09/20/sparsearray/" class="archive-article-date">
+  	<time datetime="2019-09-20T01:47:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Git简易使用"><a href="#Git简易使用" class="headerlink" title="Git简易使用"></a>Git简易使用</h1><h2 id="使用前准备"><a href="#使用前准备" class="headerlink" title="使用前准备"></a>使用前准备</h2><p>安装完git后配置本地的用户名和邮箱右键git bash here</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Colin678&quot;</span><br><span class="line">git config --global user.email &quot;1020084984@qq.com&quot;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="稀疏数组"><a href="#稀疏数组" class="headerlink" title="稀疏数组"></a>稀疏数组</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>当一个数组大部分元素为0或者为同一值时，可以使用稀疏数组来保存该数组</p>
+<p>稀疏数组的处理方法</p>
+<ul>
+<li>记录数组一共有几行几列，有多少个不同的值</li>
+<li>把具有不同的值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模</li>
+</ul>
 <a id="more"></a>
-<p>配完后查看<br>查看C:\Users\你电脑的用户.gitconfig 打开就能看到刚刚配置好的<br>github就是一个远程仓库统一的托管网站（<a href="https://github.com/）" target="_blank" rel="noopener">https://github.com/）</a></p>
-<p>用它的目的就是<strong>将本地的项目和托管网站的项目进行交互</strong>，注意我登陆这个网站时输入了用户名和密码，那我操作我项目和这个托管网站进行交互时是不是也要输入用户名和密码，很麻烦，就有<strong>免密钥登陆</strong><br>怎么配置？</p>
-<ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C 你的邮箱</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一直回车就完事了，在回车时会看到一个目录你去找他就会看到ssh密匙</p>
-</li>
-<li><p>然后在托管网站上配置shh就行了，把第二步的那个ssh密匙复制进去，名字随便取</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 
-<p> 测试</p>
-</li>
-<li><p>测试好了之后，在第二步的那个路径会多出一个<strong>known_hosts</strong>这个文件</p>
-</li>
-</ol>
-<hr>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
-<li><p>在电脑上新建一个项目，在项目根目录下输入</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在托管网站上也新建一个仓库</p>
-</li>
-<li><p>现在进行项目(自己电脑的和托管网站的)之间的关联</p>
-</li>
-<li><p>远程项目的唯一标识符就是 </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git@github.com:Colin678/wuziqi.git</span><br><span class="line">或者</span><br><span class="line">https://github.com/Colin678/wuziqi.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>本地项目和托管网站的仓库关联</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:Colin678/wuziqi.git(第一步的标识符任意一种)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第一次发布项目</p>
-<p> 本地到远程</p>
-<ol>
-<li>git add .( . 当前目录下的所有文件)<br>将他们放入缓存区(index)</li>
-<li>git commit -m ‘注释内容’</li>
-<li>git push -u origin master 推送出去</li>
-</ol>
-</li>
-<li><p>你发布了别人怎么下载</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:Colin678/wuziqi.git</span><br><span class="line">或者</span><br><span class="line">https://github.com/Colin678/wuziqi.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>长期的维护，也就是更新和提交</p>
-<p> 更新，远程更新到本地<br> 输入<code>git pull</code>就完事了</p>
-<p> 提交，在自己电脑上写好了提交到仓库</p>
-<ol>
-<li>git add .( . 当前目录下的所有文件)<br>将他们放入缓存区(index)</li>
-<li>git commit -m ‘注释内容’</li>
-<li>git push origin master 推送出去 也就少了个-u</li>
-</ol>
-</li>
-<li><p>创建一个分支</p>
-<p> git branch 分支的名称</p>
-</li>
-<li><p>切换分支</p>
-<p>git checkout 分支的名称</p>
-</li>
-<li><p>合并分支</p>
-<p>git merge 分支名称(看你想合并谁)</p>
-</li>
-<li><p>解决冲突</p>
-<p>当两个分支在操作同一文件时，合并会有冲突，</p>
-<ol>
-<li>第一部，编辑此文件</li>
-<li>两个分支商讨后保存退出</li>
-<li>add commit</li>
-</ol>
-</li>
-</ol>
+<h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h2><p>这是一个原始的二维数组</p>
+<table>
+<thead>
+<tr>
+<th align="center">0</th>
+<th align="center">0</th>
+<th align="center">0</th>
+<th align="center">22</th>
+<th align="center">0</th>
+<th align="center">0</th>
+<th align="center">15</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">11</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">17</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center"></td>
+<td align="center">-6</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center"></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">39</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">91</td>
+<td align="center">0</td>
+<td align="center"></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">28</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<p>这是稀疏数组</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">行</th>
+<th align="center">列</th>
+<th align="center">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">6</td>
+<td align="center">7</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">3</td>
+<td align="center">22</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">6</td>
+<td align="center">15</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">11</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">5</td>
+<td align="center">17</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">-6</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">3</td>
+<td align="center">5</td>
+<td align="center">39</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">4</td>
+<td align="center">0</td>
+<td align="center">91</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">5</td>
+<td align="center">3</td>
+<td align="center">28</td>
+</tr>
+</tbody></table>
+<p>第一行记录原二维数组有几行几列多少个不同的值，其他行分别记录这些不同的值都在第几行第几列值为多少</p>
+<p>可以看到6*7的数组变成了9*3的数组</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>模拟一个五子棋盘存档</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rw.sparse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SparseArray</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个11*11的二维数组</span></span><br><span class="line">        <span class="comment">//0代表没有旗子，1为黑子，2为白子</span></span><br><span class="line">        <span class="keyword">int</span>[][] chessArr1 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">11</span>][<span class="number">11</span>];</span><br><span class="line">        chessArr1[<span class="number">1</span>][<span class="number">2</span>]=<span class="number">1</span>;</span><br><span class="line">        chessArr1[<span class="number">2</span>][<span class="number">3</span>]=<span class="number">2</span>;</span><br><span class="line">        <span class="comment">//输出原始的二维数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] row:chessArr1) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> data:row) &#123;</span><br><span class="line">                System.out.print(data+<span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//确定稀疏数组的行数</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] row:chessArr1) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> data:row) &#123;</span><br><span class="line">               <span class="keyword">if</span> (data!=<span class="number">0</span>)&#123;</span><br><span class="line">                   sum++;</span><br><span class="line">               &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//创建稀疏数组</span></span><br><span class="line">        <span class="keyword">int</span>[][] sparseArr = <span class="keyword">new</span> <span class="keyword">int</span>[sum+<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">        <span class="comment">//给稀疏数组赋值</span></span><br><span class="line">        <span class="comment">//第一行记录原始二维数组有多少行多少列</span></span><br><span class="line">       sparseArr[<span class="number">0</span>][<span class="number">0</span>] = chessArr1.length;</span><br><span class="line">       sparseArr[<span class="number">0</span>][<span class="number">1</span>] = chessArr1[<span class="number">0</span>].length;</span><br><span class="line">       sparseArr[<span class="number">0</span>][<span class="number">2</span>] = sum;</span><br><span class="line">       <span class="comment">//开始记录不同的值在第几行第几列</span></span><br><span class="line">        <span class="keyword">int</span> row;</span><br><span class="line">        <span class="keyword">int</span> col;</span><br><span class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;chessArr1.length;i++ )&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;chessArr1[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span> (chessArr1[i][j]!=<span class="number">0</span>)&#123;</span><br><span class="line">                    count++;</span><br><span class="line">                    sparseArr[count][<span class="number">0</span>]=i;</span><br><span class="line">                    sparseArr[count][<span class="number">1</span>]=j;</span><br><span class="line">                    sparseArr[count][<span class="number">2</span>]=chessArr1[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//输出稀疏数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] row1:sparseArr) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> data:row1) &#123;</span><br><span class="line">                System.out.print(data+<span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将稀疏数组恢复成二维数组</span></span><br><span class="line">        <span class="comment">//首先确定几行几列</span></span><br><span class="line">       <span class="keyword">int</span>[][] chessArr2 = <span class="keyword">new</span> <span class="keyword">int</span>[sparseArr[<span class="number">0</span>][<span class="number">0</span>]][sparseArr[<span class="number">0</span>][<span class="number">1</span>]];</span><br><span class="line">       <span class="comment">//从第一行开始就可以赋值了</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;sparseArr.length;i++)&#123;</span><br><span class="line">            chessArr2[sparseArr[i][<span class="number">0</span>]][sparseArr[i][<span class="number">1</span>]]=sparseArr[i][<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//恢复后的数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] row1:chessArr2) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> data:row1) &#123;</span><br><span class="line">                System.out.print(data+<span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到11*11的二维数组可以和3*3的稀疏数组相互转换</p>
 
       
 
@@ -312,7 +377,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/17/git/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/20/sparsearray/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,18 +391,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/20/sparsearray/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          sparsearray
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/20/SpringMVC04/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SpringMVC04</div>
+    <a href="/2019/09/17/git/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git</div>
       <i class="icon-circle-right"></i>
     </a>
   
