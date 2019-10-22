@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Oyzbb">
 <meta property="og:description" content="title: SpringBoot00date: 2019-10-22 16:36:42tags: spring boot自动加载原理12345678@SpringBootApplicationpublic class UtOtcLoginApplication &amp;#123;    public static void main(String[] args) &amp;#123;        Sprin">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-22T08:56:31.327Z">
+<meta property="og:updated_time" content="2019-10-22T09:01:16.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oyzbb">
 <meta name="twitter:description" content="title: SpringBoot00date: 2019-10-22 16:36:42tags: spring boot自动加载原理12345678@SpringBootApplicationpublic class UtOtcLoginApplication &amp;#123;    public static void main(String[] args) &amp;#123;        Sprin">
@@ -149,6 +149,8 @@
 <h1 id="spring-boot自动加载原理"><a href="#spring-boot自动加载原理" class="headerlink" title="spring boot自动加载原理"></a>spring boot自动加载原理</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UtOtcLoginApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(UtOtcLoginApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>点进@SpringBootApplication这个注解看，</p>
+<a id="more"></a>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(excludeFilters = &#123; <span class="meta">@Filter</span>(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span><br><span class="line">		<span class="meta">@Filter</span>(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) &#125;)</span><br></pre></td></tr></table></figure>
 
 <p>抛开元注解不看，看这两个注解@SpringBootConfiguration，@EnableAutoConfiguration</p>
