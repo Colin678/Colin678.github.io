@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Oyzbb</title>
+  <title>log | Oyzbb</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: SpringBoot00date: 2019-10-22 16:36:42tags: spring boot自动加载原理12345678@SpringBootApplicationpublic class UtOtcLoginApplication &amp;#123;    public static void main(String[] args) &amp;#123;        Sprin">
+  <meta name="description" content="Java混乱的日志系统平常会经常看见log4j，log4j2，jul，slf4j等等。今天就乘此机会来了解一下。    名称 描述    java.util.logging jdk1.4自带   log4j 早期常用的日至组件   log4j2 阿帕奇开发的log4j的升级产品   logback 也是常用的日至组件，性能比log4j好，也是slf4j阵营的   Apache Commons Lo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oyzbb">
-<meta property="og:url" content="http://yoursite.com/2019/10/22/SpringBoot00/index.html">
+<meta property="og:title" content="log">
+<meta property="og:url" content="http://yoursite.com/2019/10/29/log/index.html">
 <meta property="og:site_name" content="Oyzbb">
-<meta property="og:description" content="title: SpringBoot00date: 2019-10-22 16:36:42tags: spring boot自动加载原理12345678@SpringBootApplicationpublic class UtOtcLoginApplication &amp;#123;    public static void main(String[] args) &amp;#123;        Sprin">
+<meta property="og:description" content="Java混乱的日志系统平常会经常看见log4j，log4j2，jul，slf4j等等。今天就乘此机会来了解一下。    名称 描述    java.util.logging jdk1.4自带   log4j 早期常用的日至组件   log4j2 阿帕奇开发的log4j的升级产品   logback 也是常用的日至组件，性能比log4j好，也是slf4j阵营的   Apache Commons Lo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-22T09:01:16.575Z">
+<meta property="og:image" content="g:%5Cblog%5Csource_posts%5Clog%5Cspringbootlog.png">
+<meta property="og:image" content="g:%5Cblog%5Csource_posts%5Clog%5Creplace.jpg">
+<meta property="og:updated_time" content="2019-10-30T08:22:54.911Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oyzbb">
-<meta name="twitter:description" content="title: SpringBoot00date: 2019-10-22 16:36:42tags: spring boot自动加载原理12345678@SpringBootApplicationpublic class UtOtcLoginApplication &amp;#123;    public static void main(String[] args) &amp;#123;        Sprin">
+<meta name="twitter:title" content="log">
+<meta name="twitter:description" content="Java混乱的日志系统平常会经常看见log4j，log4j2，jul，slf4j等等。今天就乘此机会来了解一下。    名称 描述    java.util.logging jdk1.4自带   log4j 早期常用的日至组件   log4j2 阿帕奇开发的log4j的升级产品   logback 也是常用的日至组件，性能比log4j好，也是slf4j阵营的   Apache Commons Lo">
+<meta name="twitter:image" content="g:%5Cblog%5Csource_posts%5Clog%5Cspringbootlog.png">
   
     <link rel="alternative" href="/atom.xml" title="Oyzbb" type="application/atom+xml">
   
@@ -140,43 +143,103 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-SpringBoot00" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-log" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      log
+    </h1>
+  
+
+        
+        <a href="/2019/10/29/log/" class="archive-article-date">
+  	<time datetime="2019-10-29T14:31:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-29</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>title: SpringBoot00<br>date: 2019-10-22 16:36:42<br>tags:</p>
-<h1 id="spring-boot自动加载原理"><a href="#spring-boot自动加载原理" class="headerlink" title="spring boot自动加载原理"></a>spring boot自动加载原理</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UtOtcLoginApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(UtOtcLoginApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>点进@SpringBootApplication这个注解看，</p>
+        <h1 id="Java混乱的日志系统"><a href="#Java混乱的日志系统" class="headerlink" title="Java混乱的日志系统"></a>Java混乱的日志系统</h1><p>平常会经常看见log4j，log4j2，jul，slf4j等等。今天就乘此机会来了解一下。</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">java.util.logging</td>
+<td>jdk1.4自带</td>
+</tr>
+<tr>
+<td align="left">log4j</td>
+<td>早期常用的日至组件</td>
+</tr>
+<tr>
+<td align="left">log4j2</td>
+<td>阿帕奇开发的log4j的升级产品</td>
+</tr>
+<tr>
+<td align="left">logback</td>
+<td>也是常用的日至组件，性能比log4j好，也是slf4j阵营的</td>
+</tr>
+</tbody></table>
+<h2 id="Apache-Commons-Logging-JCL"><a href="#Apache-Commons-Logging-JCL" class="headerlink" title="Apache Commons Logging(JCL)"></a>Apache Commons Logging(JCL)</h2><p>apache comons logging,简称jcl。可以理解为一种基于适配原则的通用日志api。当我们什么都不做的时候，jcl默认使用的是jul也就是jdk自带的日志。当我们加入log4j的依赖时，编写好log4j.properties文件，他就会自动适配使用log4j日志组件。</p>
 <a id="more"></a>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(excludeFilters = &#123; <span class="meta">@Filter</span>(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span><br><span class="line">		<span class="meta">@Filter</span>(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) &#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h5><ol>
+<li><p>引入依赖</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&lt;dependency&gt;</span></span><br><span class="line"><span class="comment">            &lt;groupId&gt;log4j&lt;/groupId&gt;</span></span><br><span class="line"><span class="comment">            &lt;artifactId&gt;log4j&lt;/artifactId&gt;</span></span><br><span class="line"><span class="comment">            &lt;version&gt;1.2.17&lt;/version&gt;</span></span><br><span class="line"><span class="comment">        &lt;/dependency&gt;--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rw;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.logging.Log;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.logging.LogFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stringtest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Log log = LogFactory.getLog(Stringtest.class);</span><br><span class="line">        log.info(<span class="string">"yyy"</span>);</span><br><span class="line">        test01();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">十月 <span class="number">30</span>, <span class="number">2019</span> <span class="number">3</span>:<span class="number">35</span>:<span class="number">01</span> 下午 com.rw.Stringtest main</span><br><span class="line">信息: yyy</span><br><span class="line"><span class="keyword">false</span></span><br><span class="line">-<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
-<p>抛开元注解不看，看这两个注解@SpringBootConfiguration，@EnableAutoConfiguration</p>
-<p>点进@SpringBootConfiguration看，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>当引入log4j依赖时并编写好配置文件</p>
+<ol>
+<li><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">log4j.rootLogger=DEBUG,A1</span><br><span class="line">log4j.logger.org.mybatis = DEBUG</span><br><span class="line">log4j.appender.A1=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.A1.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.A1.layout.ConversionPattern=%-d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; [%t] [%c]-[%p] %m%n</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rw;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.logging.Log;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.logging.LogFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stringtest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Log log = LogFactory.getLog(Stringtest.class);</span><br><span class="line">        log.info(<span class="string">"yyy"</span>);</span><br><span class="line">        test01();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2019</span>-<span class="number">10</span>-<span class="number">30</span> <span class="number">15</span>:<span class="number">43</span>:<span class="number">09</span>,<span class="number">603</span> [main] [com.rw.Stringtest]-[INFO] yyy</span><br><span class="line"><span class="keyword">false</span></span><br><span class="line">-<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
-<p>其实就是一个@Configuration注解，在spring中，这个注解就是声明这个类是一个配置类，可以配合@Bean使用。</p>
-<p>点进@EnableAutoConfiguration看，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@AutoConfigurationPackage</span></span><br><span class="line"><span class="meta">@Import</span>(AutoConfigurationImportSelector.class)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>显然按照了我的配置文件输出格式输出</p>
+<h2 id="SLF4J"><a href="#SLF4J" class="headerlink" title="SLF4J"></a>SLF4J</h2><p>slf4j，全称为， Simple Logging Facade for Java和jcl一样不提供日志的具体实现。jcl是一种适配原则，而slf4j是用一种桥接思想（个人理解为一种偷梁换柱的思想）。</p>
+<p>以spring boot为例</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>可以看到导入了一个AutoConfigurationImportSelector.class，点进去看，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> List&lt;String&gt; <span class="title">getCandidateConfigurations</span><span class="params">(AnnotationMetadata metadata, AnnotationAttributes attributes)</span> </span>&#123;</span><br><span class="line">	List&lt;String&gt; configurations = SpringFactoriesLoader.loadFactoryNames(getSpringFactoriesLoaderFactoryClass(),</span><br><span class="line">			getBeanClassLoader());</span><br><span class="line">	Assert.notEmpty(configurations, <span class="string">"No auto configuration classes found in META-INF/spring.factories. If you "</span></span><br><span class="line">			+ <span class="string">"are using a custom packaging, make sure that file is correct."</span>);</span><br><span class="line">	<span class="keyword">return</span> configurations;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>点进去看</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-classic<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-to-slf4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.11.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jul-to-slf4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.28<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>在这里面META-INF/spring.factories可以找到这样一个文件，</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Auto Configure</span><br><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration=\</span><br><span class="line">org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\</span><br><span class="line">org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\</span><br><span class="line">org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\</span><br><span class="line">org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration,\</span><br><span class="line">org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration,\</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-
-<p>可见，每一个xxxxAutoConfiguration类都是容器的一个组件，用他们来自动配置。</p>
-<p>找一个HttpEncodingAutoConfiguration来看看，点进源码看这个类，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableConfigurationProperties</span>(HttpProperties.class)</span><br><span class="line"><span class="meta">@ConditionalOnWebApplication</span>(type = ConditionalOnWebApplication.Type.SERVLET)</span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(CharacterEncodingFilter.class)</span><br><span class="line"><span class="meta">@ConditionalOnProperty</span>(prefix = <span class="string">"spring.http.encoding"</span>, value = <span class="string">"enabled"</span>, matchIfMissing = <span class="keyword">true</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpEncodingAutoConfiguration</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>@Configuration，首先这是一个配置类。</p>
-<p>@EnableConfigurationProperties，点进去看HttpProperties.class。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"spring.http"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpProperties</span> </span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>@EnableConfigurationProperties,@ConfigurationProperties这两个注解，可以把HttpProperties注入到容器中去。</p>
-<p>而这些以@@ConditionalOn …开头的则是为判断啥是否存在再是否生效。</p>
+<p>可以看到它依赖</p>
+<ol>
+<li>log4j-to-slf4j</li>
+<li>jul-to-slf4j</li>
+</ol>
+<p>这两个依赖是将log4j和jcl转换为slf4j日志门面的。</p>
+<p>可以看到只有slf4j的api是不行的他指向一个dev/null。而在spring boot中看依赖图</p>
+<p><img src="G:%5Cblog%5Csource_posts%5Clog%5Cspringbootlog.png" alt="springbootlog"></p>
+<p>可以看到使用的是slf4j+logback的组合使用。</p>
+<p>当很多框架在一起用的时候，而框架使用的日志系统有都不一样，我们想要统一日志系统的思路是：</p>
+<ol>
+<li>选定日志系统，排除其他的日志框架</li>
+<li>用中间包替换掉排除掉的日至框架包</li>
+</ol>
+<p><img src="G:%5Cblog%5Csource_posts%5Clog%5Creplace.jpg" alt="replace"></p>
+<p>spring boot的日至框架选用的是slf4j+logback。</p>
+<p>至此，这就是Java日志框架的初步了解。</p>
 
       
 
@@ -256,7 +319,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/22/SpringBoot00/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/29/log/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -270,18 +333,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/29/log/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          log
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/20/sparsearray/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">sparsearray</div>
+    <a href="/2019/10/22/SpringBoot00/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
